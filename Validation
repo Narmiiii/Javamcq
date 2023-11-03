@@ -1,0 +1,26 @@
+public class UserValidation {
+    public static boolean isUserValid(String username, String password) {
+        // Check if username and password meet your validation criteria
+        // For example, you might want to check if they are not empty and meet certain length requirements
+        
+        if (username != null && !username.isEmpty() && password != null && !password.isEmpty()) {
+            // Additional validation logic can be added here if needed
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    public static void main(String[] args) {
+        String username = "exampleUser";
+        String password = "1234password";
+        
+        boolean isValid = isUserValid(username, password);
+        
+        if (isValid) {
+            System.out.println("Valid user");
+        } else {
+            System.out.println("Invalid user");
+        }
+    }
+}
