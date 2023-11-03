@@ -1,0 +1,51 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Scanner;
+
+public class UsernamePasswordValidationWithJDBC {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter your username: ");
+        String username = scanner.nextLine();
+
+        System.out.print("Enter your password: ");
+        String password = scanner.nextLine();
+
+        if (validateUser(username, password)) {
+            System.out.println("Username and password are valid.");
+        } else {
+            System.out.println("Username and/or password are invalid.");
+        }
+    }
+
+    public static boolean validateUser(String username, String password) {
+        String url = "jdbc:mysql://localhost:3306/your_database_name";
+        String dbUsername = "your_database_username";
+        String dbPassword = "your_database_password";
+
+        try {
+            Connection connection = DriverManager.getConnection(url, dbUsername, dbPassword);
+
+            String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, username);
+            statement.setString(2, password);
+
+            ResultSet resultSet = statement.executeQuery();
+            boolean validUser = resultSet.next();
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+            return validUser;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+}
