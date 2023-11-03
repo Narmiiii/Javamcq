@@ -1,0 +1,33 @@
+import java.util.Scanner;
+
+public class UsernamePasswordValidation {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Get username and password from the user
+        System.out.print("Enter your username: ");
+        String username = scanner.nextLine();
+
+        System.out.print("Enter your password: ");
+        String password = scanner.nextLine();
+
+        // Validate the username and password
+        if (isValidUsername(username) && isValidPassword(password)) {
+            System.out.println("Username and password are valid.");
+        } else {
+            System.out.println("Username and/or password are invalid.");
+        }
+    }
+
+    // Define validation rules for username (e.g., minimum length)
+    public static boolean isValidUsername(String username) {
+        return username.length() >= 5;
+    }
+
+    // Define validation rules for password (e.g., minimum length and complexity)
+    public static boolean isValidPassword(String password) {
+        // You can define your own password complexity rules here.
+        // For example, requiring a minimum length and a mix of letters, digits, and special characters.
+        return password.length() >= 8 && password.matches(".*[a-zA-Z].*") && password.matches(".*\\d.*");
+    }
+}
