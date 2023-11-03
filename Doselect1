@@ -1,0 +1,54 @@
+import java.util.ArrayList;
+import java.util.List;
+
+class ArrayListOps {
+    public ArrayList<Integer> makeArrayListInt(int n) {
+        ArrayList<Integer> list = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            list.add(0);
+        }
+        return list;
+    }
+
+    public ArrayList<Integer> reverseList(ArrayList<Integer> list) {
+        ArrayList<Integer> reversedList = new ArrayList<>();
+        for (int i = list.size() - 1; i >= 0; i--) {
+            reversedList.add(list.get(i));
+        }
+        return reversedList;
+    }
+
+    public ArrayList<Integer> changeList(ArrayList<Integer> list, int m, int n) {
+        ArrayList<Integer> changedList = new ArrayList<>();
+        for (int element : list) {
+            if (element == m) {
+                changedList.add(n);
+            } else {
+                changedList.add(element);
+            }
+        }
+        return changedList;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        ArrayListOps ops = new ArrayListOps();
+        
+        // Sample Input
+        ArrayList<Integer> list = new ArrayList<>(List.of(10, 25, 33, 28, 10, 12));
+        int n = 4;
+        int m = 28;
+        int replaceWith = 20;
+
+        // Method calls
+        ArrayList<Integer> result1 = ops.makeArrayListInt(n);
+        ArrayList<Integer> result2 = ops.reverseList(list);
+        ArrayList<Integer> result3 = ops.changeList(list, m, replaceWith);
+
+        // Printing results
+        System.out.println(result1);
+        System.out.println(result2);
+        System.out.println(result3);
+    }
+}
