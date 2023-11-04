@@ -1,0 +1,96 @@
+class Person {
+    private String name;
+    private String game;
+
+    public Person(String name, String game) {
+        this.name = name;
+        this.game = game;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getGame() {
+        return game;
+    }
+}
+
+class Finale {
+    private Person person;
+
+    public Finale(Person p) {
+        this.person = p;
+    }
+
+    public String checkPerson() {
+        String[] parts = person.getName().split(" ");
+        if (parts.length != 2) {
+            return "Failed";
+        }
+
+        String[] gameParts = person.getGame().split(" ");
+        if (gameParts.length != 3) {
+            return "Failed";
+        }
+
+        try {
+            int first = Integer.parseInt(gameParts[0]);
+            int second = Integer.parseInt(gameParts[1]);
+
+            if (first > 9 || second > 9) {
+                return "Failed";
+            }
+
+            // Check if the last part contains only 'W' and 'L'
+            String results = gameParts[2];
+            for (char c : results.toCharArray()) {
+                if (c != 'W' && c != 'L') {
+                    return "Failed";
+                }
+            }
+
+            return "Person valid";
+        } catch (NumberFormatException e) {
+            return "Failed";
+        }
+    }
+
+    public int numberOfTrophies() {
+        String[] gameParts = person.getGame().split(" ");
+
+        try {
+            int winTrophies = Integer.parseInt(gameParts[0]);
+            int lossTrophies = Integer.parseInt(gameParts[1]);
+            String results = gameParts[2];
+
+            int winCount = 0;
+            int lossCount = 0;
+
+            for (char c : results.toCharArray()) {
+                if (c == 'W') {
+                    winCount++;
+                } else if (c == 'L') {
+                    lossCount++;
+                }
+            }
+
+            return winTrophies * winCount - lossTrophies * lossCount;
+        } catch (NumberFormatException e) {
+            return -1;
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Person p = new Person("Ravi Teja", "8 4 WL");
+        Finale f = new Finale(p);
+
+        String checkResult = f.checkPerson();
+        int trophies = f.numberOfTrophies();
+
+        System.out.println("Check Person Result: " + checkResult);
+        System.out.println("Number of Trophies: " + trophies);
+    }
+}
