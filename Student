@@ -1,0 +1,50 @@
+import java.util.HashMap;
+
+class Student {
+    HashMap<String, String> datalist;
+
+    public Student() {
+        datalist = new HashMap<>();
+    }
+
+    public String addStudentDetails(String name, String id) {
+        if (datalist.containsKey(name)) {
+            return "Id generation Failed, name is already present in the database";
+        } else {
+            datalist.put(name, id);
+            return "Id Generated";
+        }
+    }
+
+    public String deleteId(String name) {
+        if (datalist.containsKey(name)) {
+            datalist.remove(name);
+            return "Id deleted successfully";
+        } else {
+            return "Id not found";
+        }
+    }
+
+    public String searchId(String name) {
+        if (datalist.containsKey(name)) {
+            return datalist.get(name);
+        } else {
+            return "Id not found";
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Student obj = new Student();
+
+        String s1 = obj.addStudentDetails("Sarah", "99889");
+        String s2 = obj.addStudentDetails("John", "78985");
+        String s3 = obj.deleteId("Sarah");
+        String s4 = obj.searchId("Steve");
+
+        System.out.println(s1);
+        System.out.println(s2);
+        System.out.println(s3);
+        System.out.println(s4);
+    }
