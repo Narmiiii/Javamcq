@@ -1,0 +1,42 @@
+import java.util.ArrayList;
+
+public class Source {
+    // Method to add items to groceryList
+    public void addItem(ArrayList<String> groceryList, String item) {
+        groceryList.add(item);
+    }
+
+    // Method to modify an item in groceryList at a given index
+    public String modifyItem(ArrayList<String> groceryList, int index, String newItem) {
+        if (index >= 0 && index < groceryList.size()) {
+            groceryList.set(index, newItem);
+            return "Item of index " + index + " has been modified.";
+        } else {
+            return "Invalid index. No modification done.";
+        }
+    }
+
+    // Method to remove an item from groceryList at a given index
+    public String removeItem(ArrayList<String> groceryList, int index) {
+        if (index >= 0 && index < groceryList.size()) {
+            groceryList.remove(index);
+            return "Item of index " + index + " has been removed.";
+        } else {
+            return "Invalid index. No removal done.";
+        }
+    }
+
+    // Method to search for an item in groceryList
+    public String searchItem(ArrayList<String> groceryList, String searchItem) {
+        if (groceryList.contains(searchItem)) {
+            return searchItem;
+        } else {
+            return "no such item";
+        }
+    }
+
+    // Method to get the size of groceryList
+    public int getSize(ArrayList<String> groceryList) {
+        return groceryList.size();
+    }
+}
