@@ -1,0 +1,29 @@
+class BombBlast extends Exception {
+    public BombBlast(String msg) {
+        super(msg);
+    }
+}
+
+class WalkingBoy {
+    int stepSize;
+    int blockSize;
+
+    public WalkingBoy(int stepSize, int blockSize) {
+        this.stepSize = stepSize;
+        this.blockSize = blockSize;
+    }
+
+    public String targetHit(String platform) throws BombBlast {
+        int n = platform.length() / blockSize;
+        for (int i = 0; i < n; i++) {
+            int start = i * blockSize;
+            int end = start + stepSize;
+            if (end <= platform.length()) {
+                String sub = platform.substring(start, end);
+                if (sub.contains("x")) {
+                    throw new BombBlast("You hit the target");
+                }
+            }
+        }
+        return "Win";
+    }
