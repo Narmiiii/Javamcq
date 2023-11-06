@@ -1,0 +1,56 @@
+import java.util.ArrayList;
+import java.util.List;
+
+class Student {
+    private String name;
+    private int roll;
+
+    public Student(String name, int roll) {
+        this.name = name;
+        this.roll = roll;
+    }
+
+    // Getter for name
+    public String getName() {
+        return name;
+    }
+
+    // Setter for name
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    // Getter for roll
+    public int getRoll() {
+        return roll;
+    }
+
+    // Setter for roll
+    public void setRoll(int roll) {
+        this.roll = roll;
+    }
+}
+
+class Record {
+    private List<Student> students;
+
+    public Record() {
+        this.students = new ArrayList<>();
+    }
+
+    public String addStudent(Student student) {
+        String name = student.getName();
+        if (name.matches("^[a-zA-Z]+$")) {
+            students.add(student);
+            return "Added";
+        } else {
+            return "Invalid name";
+        }
+    }
+
+    public String swapRolls(Student s1, Student s2) {
+        int roll1 = s1.getRoll();
+        s1.setRoll(s2.getRoll());
+        s2.setRoll(roll1);
+        return "Swapped";
+    }
