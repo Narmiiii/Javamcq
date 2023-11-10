@@ -1,0 +1,63 @@
+public void createEmployee(String firstName, String lastName, String surname, Date doj, Date dob, String qualification, String address, String contactNumber, String designation, int experience, String role) {
+    // Implementation to generate Employee ID and insert a new record into the Employee table.
+}
+
+2) **Update employee details:**
+```java
+public void updateEmployeeDetails(int employeeId, String newDetails) {
+    // Implementation to update details for the given Employee ID in the Employee table.
+}
+
+3) **Soft delete employee record:**
+```java
+public void softDeleteEmployee(int employeeId) {
+    // Implementation to soft delete the record for the given Employee ID in the Employee table.
+}
+
+4) **Fetch employee details:**
+```java
+public Employee getEmployeeDetails(int employeeId) {
+    // Implementation to fetch and return details for the given Employee ID from the Employee table.
+}
+
+public List<Employee> getEmployeesByFirstName(String firstName) {
+    // Implementation to fetch and return details for the given First Name from the Employee table.
+}
+
+public List<Employee> getEmployeesByLastName(String lastName) {
+    // Implementation to fetch and return details for the given Last Name from the Employee table.
+}
+
+public List<Employee> getEmployeesBySurname(String surname) {
+    // Implementation to fetch and return details for the given Surname from the Employee table.
+}
+
+1) **Insert/Delete skill in Skill Table:**
+```java
+public void insertSkill(int skillId, String skillName, String skillDescription) {
+    // Implementation to insert a new skill into the Skill table.
+}
+
+public void deleteSkill(int skillId) {
+    // Implementation to delete the skill with the given Skill ID from the Skill table.
+}
+
+2) **Insert/Update/Delete employee's skill:**
+```java
+public void insertEmployeeSkill(int employeeId, int skillId, double yearsOfExperience) {
+    // Implementation to insert a new skill mapping for the given Employee ID and Skill ID.
+}
+
+public void updateEmployeeSkill(int mappingId, double newExperience) {
+    // Implementation to update the experience for the given mapping ID in the Employee_Skill_Mapping table.
+}
+
+public void deleteEmployeeSkill(int mappingId) {
+    // Implementation to delete the skill mapping with the given mapping ID from the Employee_Skill_Mapping table.
+}
+
+3) **Count matching employees for a skill set:**
+```java
+public int countMatchingEmployeesForSkill(int skillId) {
+    // Implementation to count and return the number of employees with a particular skill set.
+}
