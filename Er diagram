@@ -1,0 +1,22 @@
++-------------------+          +---------------------+           +-------------------+
+|   Employee        |          |  Designation        |           |      Role         |
++-------------------+          +---------------------+           +-------------------+
+| EmployeeId        |----------| DesignationId       |           | RoleId            |
+| FirstName         |          | DesignationName     |           | RoleName          |
+| LastName          |          | DesignationDesc     |           | RoleDesc          |
+| Surname           |          +---------------------+           +-------------------+
+| DOJ               |                                             
+| DOB               |          +---------------------+
+| Qualification     |          |   Employee_Skill     |
+| Address           |          +---------------------+
+| ContactNumber     |          | SkillId             |
+| Role              |----------| EmployeeId          |
+| Experience        |          | YearsOfExperience   |
++-------------------+          +---------------------+
+                                  |   Skill             |
+                                  +---------------------+
+                                  | SkillId             |
+                                  | SkillName           |
+                                  | SkillDescription    |
+                                  +---------------------+
+
