@@ -1,0 +1,76 @@
+import java.util.ArrayList;
+import java.util.List;
+
+class Song {
+    private String name;
+    private String runTime;
+    private String singer;
+
+    public Song(String name, String runTime, String singer) {
+        this.name = name;
+        this.runTime = runTime;
+        this.singer = singer;
+    }
+
+    // Getters
+    public String getName() {
+        return name;
+    }
+
+    public String getRunTime() {
+        return runTime;
+    }
+
+    public String getSinger() {
+        return singer;
+    }
+}
+
+class Playlist {
+    private List<Song> songs = new ArrayList<>();
+
+    public String playSong(String currentTime, Song song) {
+        String[] currentTimeArr = currentTime.split(":");
+        String[] runTimeArr = song.getRunTime().split(":");
+
+        int currentMinutes = Integer.parseInt(currentTimeArr[0]);
+        int currentSeconds = Integer.parseInt(currentTimeArr[1]);
+        int runTimeMinutes = Integer.parseInt(runTimeArr[0]);
+        int runTimeSeconds = Integer.parseInt(runTimeArr[1]);
+
+        if (currentMinutes < runTimeMinutes || (currentMinutes == runTimeMinutes && currentSeconds < runTimeSeconds)) {
+            return "Song is being continued";
+        } else {
+            return "Song replayed";
+        }
+    }
+
+    public String addSong(Song song) {
+        for (Song s : songs) {
+            if (s.getName().equals(song.getName())) {
+                return "Cannot be added";
+            }
+        }
+
+        songs.add(song);
+        return "Added";
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Playlist playlist = new Playlist();
+        Song s1 = new Song("Venom", "4:58", "Eminem");
+        
+        System.out.println(playlist.addSong(s1));  // Added
+
+        // Trying to add the same song again
+        System.out.println(playlist.addSong(s1));  // Cannot be added
+
+        // Playing the song with current time 3:30
+        System.out.println(playlist.playSong("3:30", s1));  // Song is being continued
+
+        // Playing the song with current time 5:00
+        System.out.println(playlist.playSong("5:00", s1));  // Song replayed
+    }
+}
