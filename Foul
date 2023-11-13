@@ -1,0 +1,96 @@
+import java.util.List;
+import java.util.ArrayList;
+
+class Player {
+    private String name;
+    private int power;
+
+    public Player(String name, int power) {
+        this.name = name;
+        this.power = power;
+    }
+
+    // Getters and setters
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getPower() {
+        return power;
+    }
+
+    public void setPower(int power) {
+        this.power = power;
+    }
+}
+
+class Team {
+    private List<Player> players;
+
+    public Team() {
+        this.players = new ArrayList<>();
+    }
+
+    public String addPlayer(Player p) {
+        // Validate player criteria
+        if (p.getName().contains(" ") || p.getPower() < 0) {
+            return "Invalid name";
+        }
+
+        if (p.getName().length() > 999) {
+            return "Invalid jersey number";
+        }
+
+        if (p.getPower() < 0) {
+            return "Invalid player";
+        }
+
+        // Check if the team is full
+        if (players.size() < 16) {
+            players.add(p);
+            return "Player added";
+        } else {
+            return "Team full";
+        }
+    }
+
+    public String foulOrNot(String query) {
+        String[] playerNames = query.split(" ");
+        
+        // Check if the number of players who touched the ball is less than 2
+        if (playerNames.length < 2) {
+            return "Not foul";
+        }
+
+        // Check if the last player belongs to the same team
+        String lastPlayerName = playerNames[playerNames.length - 1];
+        String lastPlayerTeam = lastPlayerName.split(" ")[0];
+
+        for (Player player : players) {
+            String playerName = player.getName().split(" ")[0];
+            if (playerName.equals(lastPlayerTeam)) {
+                return "Foul";
+            }
+        }
+
+        return "Not foul";
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Player p1 = new Player("A 1", 50);
+        Player p2 = new Player("B 10", -89);
+        Player p3 = new Player("C 1000", 89);
+        Player p4 = new Player("Dwaynne Johanson 10", 89);
+        Player p5 = new Player("Ronaldino 10", 89);
+
+        Team team = new Team();
+
+        System.out.println(team.addPlayer(p1));  // Player added
+        System.out.println(team.addPlayer(p2));  // Invalid power
+        System.out.println(team.add
